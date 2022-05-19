@@ -1,0 +1,32 @@
+{
+  "name": "zaidbari/dentist-clinic",
+  "description": "Term project for dentist clinic created by Zaid and Nouman",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
+    }
+  },
+  "authors": [
+    {
+      "name": "zaidbari",
+      "email": "hello@itszbari.com"
+    },
+    {
+      "name": "nouman",
+      "email": "nouman@gmail.com"
+    }
+  ],
+  "require": {
+    "bramus/router": "~1.6",
+    "ext-pdo": "*",
+    "vlucas/phpdotenv": "^5.4",
+    "rakit/validation": "^1.4",
+    "twig/twig": "^3.0"
+  },
+  "require-dev": {
+    "monolog/monolog": "^2.5",
+    "filp/whoops": "^2.14"
+  }
+}
