@@ -75,48 +75,6 @@ class Auth extends Controller
 		}
 	}
 
-	public function update( $id )
-	{
-		$this->validate([ 'name' => 'required|max:255' ]);
-		try {
-			$user = User::where($id);
-			!$user && throw new \Exception('Error updating user.', 404);
-
-			$user = User::update($id, [ 'name' => $this->param('name') ]);
-			!$user && throw new \Exception('Server error', 500);
-
-			$this->response([
-				'status' => 'success',
-				'user' => [ 'name' => $this->param('name'), 'id' => $user ],
-				'message' => 'User updated successfully'
-			], 201);
-
-		} catch (\Exception $e) {
-			$this->response([
-				'status' => 'error',
-				'message' => $e->getMessage()
-			], $e->getCode());
-		}
-	}
-
-	public function delete( $id )
-	{
-		try {
-			$user = User::delete($id);
-			!$user && throw new \Exception('Server error', 500);
-
-			$this->response([
-				'status' => 'success',
-				'message' => 'Account deleted'
-			], 201);
-
-		} catch (\Exception $e) {
-			$this->response([
-				'status' => 'error',
-				'message' => json_decode($e->getMessage())
-			], $e->getCode());
-		}
-	}
 
 	public function logout()
 	{

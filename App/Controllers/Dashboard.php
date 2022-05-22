@@ -10,7 +10,6 @@ class Dashboard extends \App\Core\Controller
 	public function index()
 	{
 		$this->authorize();
-
 		$this->view('dashboard/index', [
 			'meta' => [ 'title' => 'Dashboard' ],
 			'data' => [

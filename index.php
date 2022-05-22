@@ -41,5 +41,16 @@ $router->post('/user/login', 'Auth@login');
  **/
 $router->get('/dashboard', 'Dashboard@index');
 
+/**
+ * =========================
+ * User Management
+ * =========================
+ **/
+
+$router->get('/users/manage/delete/{id}', 'Users@delete'); // delete user @authorized for 'admin' only
+$router->get('/users/manage/show/{id}', 'Users@show'); // show user @authorized for 'admin' only
+$router->get('/users/manage/edit/{id}', 'Users@edit'); // edit user @authorized for 'admin' or 'user' himself only
+$router->post('/users/manage/update/{id}', 'Users@update'); // update user @authorized for 'admin' or 'user' himself only
+
 
 $router->run();

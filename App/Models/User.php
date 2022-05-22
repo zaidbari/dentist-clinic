@@ -25,22 +25,23 @@ class User extends Model
 	public static function create( $data ) : int
 	{
 		$sql = 'INSERT INTO users (name, email, role, password) VALUES (:name, :email, :role, :password)';
-		$stmt = self::db()->prepare($sql);
+		$db = self::db();
+		$stmt = $db->prepare($sql);
 		$stmt->bindValue(':name', $data['name']);
 		$stmt->bindValue(':email', $data['email']);
 		$stmt->bindValue(':password', $data['password']);
 		$stmt->bindValue(':role', $data['role']);
 		$stmt->execute();
-		return self::db()->lastInsertId();
+
+		return $db->lastInsertId();
 	}
 
 	public static function update( $data, $value, $field = 'id' ) : int
 	{
-		$sql = 'UPDATE users SET name = :name, email = :email, role = :role WHERE ' . $field . ' = :value';
+		$sql = 'UPDATE users SET name = :name, email = :email WHERE ' . $field . ' = :value';
 		$stmt = self::db()->prepare($sql);
 		$stmt->bindValue(':name', $data['name']);
 		$stmt->bindValue(':email', $data['email']);
-		$stmt->bindValue(':role', $data['role']);
 		$stmt->bindValue(':value', $value);
 		$stmt->execute();
 		return $stmt->rowCount();
