@@ -2,20 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Core\Controller;
 use App\Models\User;
 
-class Dashboard extends \App\Core\Controller
+class Dashboard extends Controller
 {
 
 	public function index()
 	{
 		$this->authorize();
-		$this->view('dashboard/index', [
-			'meta' => [ 'title' => 'Dashboard' ],
-			'data' => [
-				'count' => User::userCount(),
-				'users' => User::all()
-			]
-		]);
+		$users = User::search();
+		$count = User::userCount();
+		$meta = [ 'title' => 'Dashboard' ];
+		$this->view('dashboard/index', compact('users', 'count', 'meta'));
+
 	}
 }

@@ -3,7 +3,7 @@
 		<div class="flex items-start justify-between">
 			<div class="flex flex-col space-y-2">
 				<span class="text-gray-400">Total Doctors</span>
-				<span class="text-lg font-semibold">{{ data.count.doctor }}</span>
+				<span class="text-lg font-semibold">{{ count.doctor ?? 0  }}</span>
 			</div>
 			<div class="p-5 bg-rose-100 rounded-md">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="h-10 text-rose-500 w-10" viewBox="0 0 16 16">
@@ -17,11 +17,11 @@
 		<div class="flex items-start justify-between">
 			<div class="flex flex-col space-y-2">
 				<span class="text-gray-400">Total Nurses</span>
-				<span class="text-lg font-semibold">{{ data.count.nurse }}</span>
+				<span class="text-lg font-semibold">{{ count.nurse ?? 0 }}</span>
 			</div>
 			<div class="p-5 bg-yellow-100 rounded-md">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-10 text-yellow-500 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+				<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="h-10 text-yellow-500 w-10" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01L8 2.748ZM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Zm8.252-6.686a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162l-1.874-4.686Z"/>
 				</svg>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 		<div class="flex items-start justify-between">
 			<div class="flex flex-col space-y-2">
 				<span class="text-gray-400">Total Employees</span>
-				<span class="text-lg font-semibold">{{ data.count.employee }}</span>
+				<span class="text-lg font-semibold">{{ count.employee ?? 0 }}</span>
 			</div>
 			<div class="p-5 bg-green-100 rounded-md">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-10 text-green-500 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -43,11 +43,13 @@
 		<div class="flex items-start justify-between">
 			<div class="flex flex-col space-y-2">
 				<span class="text-gray-400">Total Patients</span>
-				<span class="text-lg font-semibold">{{ data.count.patient }}</span>
+				<span class="text-lg font-semibold">{{ count.patient ?? 0 }}</span>
 			</div>
 			<div class="p-5 bg-indigo-100 rounded-md">
-				<svg xmlns="http://www.w3.org/2000/svg" class="h-10 text-indigo-500 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-					<path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+				<svg xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="h-10 text-indigo-500 w-10" viewBox="0 0 16 16">
+					<path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z"/>
+					<path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z"/>
+					<path d="M9.979 5.356a.5.5 0 0 0-.968.04L7.92 10.49l-.94-3.135a.5.5 0 0 0-.926-.08L4.69 10H4.5a.5.5 0 0 0 0 1H5a.5.5 0 0 0 .447-.276l.936-1.873 1.138 3.793a.5.5 0 0 0 .968-.04L9.58 7.51l.94 3.135A.5.5 0 0 0 11 11h.5a.5.5 0 0 0 0-1h-.128L9.979 5.356Z"/>
 				</svg>
 			</div>
 		</div>

@@ -46,11 +46,20 @@ $router->get('/dashboard', 'Dashboard@index');
  * User Management
  * =========================
  **/
-
 $router->get('/users/manage/delete/{id}', 'Users@delete'); // delete user @authorized for 'admin' only
 $router->get('/users/manage/show/{id}', 'Users@show'); // show user @authorized for 'admin' only
-$router->get('/users/manage/edit/{id}', 'Users@edit'); // edit user @authorized for 'admin' or 'user' himself only
 $router->post('/users/manage/update/{id}', 'Users@update'); // update user @authorized for 'admin' or 'user' himself only
+
+/**
+ * =========================
+ * Appointment Management
+ * =========================
+ **/
+$router->get('/appointments', 'Appointments@index'); // Show appointment creation @authorized for 'admin', 'employee' or 'user' himself only
+
+$router->get('/appointments/manage/view/{id}', 'Appointments@show'); // Show appointment @authorized for 'admin', 'doctor', 'employee' or 'user' himself only
+$router->get('/appointment/manage/create', 'Appointments@create'); // Show appointment creation @authorized for 'admin', 'employee' or 'user' himself only
+$router->post('/appointment/manage/insert', 'Appointments@insert'); // create appointment @authorized for 'admin', 'employee' or 'user' himself only
 
 
 $router->run();

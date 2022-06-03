@@ -8,15 +8,16 @@
 				<h2 class="mt-6 text-center text-3xl font-bold text-gray-900">Register yourself</h2>
 				<p class="my-2 text-center text-sm text-gray-600">
 					Or
-					<a href="/signup" class="font-medium text-indigo-600 hover:text-indigo-500"> Already registered? Login </a>
+					<a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500"> Already registered? Login </a>
 				</p>
 				{% if FLASH() %}
-					{% for key, value in FLASH_MSG().errors %}
+					{% for key, value in FLASH().errors %}
 						<div class="bg-red-100 border mb-2 border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
 							<strong class="font-bold">Error!</strong>
 							<span class="block sm:inline">{{ value }}</span>
 						</div>
 					{% endfor %}
+					{{ CLEAR() }}
 				{% endif %}
 			</div>
 			<form class="mt-8 space-y-6" action="/user/create" method="POST">
@@ -26,6 +27,37 @@
 						<input id="name" name="name" type="text" autocomplete="name"
 									 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
 									 placeholder="Your name">
+					</div>
+					<div>
+						<label for="phone" class="sr-only">Phone</label>
+						<input id="phone" name="phone" type="tel" autocomplete="phone"
+									 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+									 placeholder="Your phone">
+					</div>
+					<div>
+						<label for="address" class="sr-only">Address</label>
+						<input id="address" name="address" type="text" autocomplete="address"
+									 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+									 placeholder="Your address">
+					</div>
+					<div>
+						<label for="city" class="sr-only">City</label>
+						<input id="city" name="city" type="text" autocomplete="city"
+									 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+									 placeholder="Your city">
+					</div>
+					<div>
+						<label for="affiliation" class="sr-only">Affiliation</label>
+						<input id="affiliation" name="affiliation" type="text" autocomplete="affiliation"
+									 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+									 placeholder="Your affiliation (employee only)">
+					</div>
+
+					<div>
+						<label for="license" class="sr-only">License Number</label>
+						<input id="license" name="license" type="text" autocomplete="license"
+									 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+									 placeholder="Your license (doctor only)">
 					</div>
 					<div>
 						<label for="email-address" class="sr-only">Email address</label>
@@ -48,13 +80,25 @@
 					<div>
 						<label for="role" class="sr-only">Occupation</label>
 						<select id="role" name="role" required
-									 class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+										class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
 						>
-							<option value="">Occuptaion</option>
+							<option value="">-- Select Role --</option>
 							<option value="doctor">Dentist</option>
 							<option value="nurse">Nurse</option>
 							<option value="employee">Employee</option>
 							<option value="patient">Patient</option>
+						</select>
+					</div>
+					<div>
+						<label for="department" class="sr-only">Department</label>
+						<select id="department" name="department" required
+										class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+						>
+
+							<option value="">-- Select Department --</option>
+							{% for department in departments %}
+								<option value="{{ department.id }}">{{ department.name }}</option>
+							{% endfor %}
 						</select>
 					</div>
 				</div>

@@ -15,26 +15,24 @@ trait View
 
 	protected function view( string $view, array $args = [] )
 	{
-		$loader = new FilesystemLoader([ 'resources/views/pages', 'resources/views/partials' ]);
-		$twig = new Environment($loader, [ 'cache' => '/cache', 'auto_reload' => true ]);
-
-		// check session user role
-		$twig->addFunction(new TwigFunction('is_', fn( $role ) => isset($_SESSION['user']) && $_SESSION['user']['role'] == $role));
-		$twig->addFunction(new TwigFunction('FLASH', fn() => isset($_SESSION['FLASH'])));
-
-
-		$twig->addFunction(new TwigFunction('FLASH_MSG', function () {
-			$flash = $_SESSION['FLASH'] ?? '';
-			unset($_SESSION['FLASH']);
-			return $flash;
-		}));
-
-
 		try {
+			$loader = new FilesystemLoader([ 'resources/views/pages', 'resources/views/partials' ]);
+			$twig = new Environment($loader, [ 'cache' => '/cache', 'auto_reload' => true ]);
+
+			// CHECK SESSION USER ROLE
+			$twig->addFunction(new TwigFunction('is_', fn( $role ) => isset($_SESSION['user']) && $_SESSION['user']['role'] == $role));
+
+			// GET FLASH MESSAGES
+			$twig->addFunction(new TwigFunction('CLEAR', function () { unset($_SESSION['FLASH']); }));
+			$twig->addFunction(new TwigFunction('FLASH', fn() => $_SESSION['FLASH'] ?? false));
+
+			$twig->addGlobal('USER', $_SESSION['user'] ?? false);
+
 			echo $twig->render($view . '.twig', $args);
 		} catch (LoaderError | RuntimeError | SyntaxError $e) {
 			echo '<pre>' . $e . '</pre>';
 		}
+
 		exit();
 	}
 }

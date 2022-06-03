@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Models\Department;
 use App\Models\User;
 
 class Auth extends Controller
@@ -16,8 +17,9 @@ class Auth extends Controller
 
 	public function signupView()
 	{
+
 		!empty($_SESSION['user']) && $this->redirect('/dashboard');
-		$this->view('auth/signup');
+		$this->view('auth/signup', ['departments' => Department::all()]);
 	}
 
 	public function login()
@@ -45,11 +47,18 @@ class Auth extends Controller
 			'name' => 'required|max:255',
 			'email' => 'required|email',
 			'password' => 'required|min:8',
-			'role' => 'required',
+			'address' => 'required|max:255',
+			'phone' => 'required|max:255',
+			'city' => 'required|max:255',
+			'role' => 'required|in:doctor,employee,nurse,admin,patient',
+			'affiliation' => 'required_unless:role,patient,admin',
+			'license' => 'required_if:role,doctor',
+			'department' => 'required_if:role,employee',
 			'confirm_password' => 'required|same:password',
 		]);
 
 		!$validated && $this->back([ 'errors' => $this->validation_errors ]);
+
 		try {
 			$user = User::where($this->param('email'), 'email');
 			if ( $user )
@@ -59,6 +68,12 @@ class Auth extends Controller
 				'name' => $this->param('name'),
 				'email' => $this->param('email'),
 				'role' => $this->param('role'),
+				'affiliation' => $this->param('affiliation'),
+				'license' => $this->param('license'),
+				'phone' => $this->param('phone'),
+				'address' => $this->param('address'),
+				'city' => $this->param('city'),
+				'department' => $this->param('department'),
 				'password' => password_hash($this->param('password'), PASSWORD_DEFAULT),
 			]);
 
