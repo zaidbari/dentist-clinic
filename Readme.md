@@ -16,21 +16,21 @@ This is a project made for Database management 2 project for Cyprus Internationa
 - Check NodeJS version ```node -v```
 
 ## Setup and Installation
-####1: Run the following command to install all the dependencies:
+#### 1: Run the following command to install all the dependencies:
 ```bash
 composer install
 npm install
 ```
 
-####2: Use ```script.sql``` to create the database and tables.
+#### 2: Use ```script.sql``` to create the database and tables.
 
-####3: Run the project using the following command:
+#### 3: Run the project using the following command:
 ```bash
 php -S localhost:8000
 ```
 
 ## Usage
-####1: Use the following commands to create a new user:
+#### 1: Use the following commands to create a new user:
 ```bash
 curl --location --request POST 'localhost:8000/user/create' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
