@@ -47,4 +47,4 @@ curl --location --request POST 'localhost:8000/user/create' \
 The above command will create a new user with the provided details and an admin role.
 
 
-####2: Or use the login and signup pages to login and signup:
+#### 2: Or use the login and signup pages to login and signup:
